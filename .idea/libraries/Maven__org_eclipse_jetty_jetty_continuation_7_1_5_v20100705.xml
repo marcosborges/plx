@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.eclipse.jetty:jetty-continuation:7.1.5.v20100705">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-continuation/7.1.5.v20100705/jetty-continuation-7.1.5.v20100705.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-continuation/7.1.5.v20100705/jetty-continuation-7.1.5.v20100705-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/jetty-continuation/7.1.5.v20100705/jetty-continuation-7.1.5.v20100705-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

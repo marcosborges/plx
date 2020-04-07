@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.jvnet.hudson.main:hudson-war:war-for-test:2.2.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jvnet/hudson/main/hudson-war/2.2.1/hudson-war-2.2.1-war-for-test.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jvnet/hudson/main/hudson-war/2.2.1/hudson-war-2.2.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/jvnet/hudson/main/hudson-war/2.2.1/hudson-war-2.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.eclipse.hudson.plugins:ssh-slaves:3.0.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/hudson/plugins/ssh-slaves/3.0.1/ssh-slaves-3.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/hudson/plugins/ssh-slaves/3.0.1/ssh-slaves-3.0.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/hudson/plugins/ssh-slaves/3.0.1/ssh-slaves-3.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
