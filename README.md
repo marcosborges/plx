@@ -89,8 +89,8 @@ import org.jenkinsci.plugins.workflow.libs.LibraryConfiguration
 import org.jenkinsci.plugins.workflow.libs.SCMSourceRetriever
 
 if (! Jenkins.instance.getDescriptor(GlobalLibraries).getLibraries().findAll{ it.getName() == "plx3" }) {
-  	def libraries = Jenkins.instance.getDescriptor(GlobalLibraries).getLibraries()
-  	def scm = new GitSCMSource("git@github.com:marcosborges/plx.git")
+    def libraries = Jenkins.instance.getDescriptor(GlobalLibraries).getLibraries()
+    def scm = new GitSCMSource("git@github.com:marcosborges/plx.git")
     scm.traits = [new BranchDiscoveryTrait()]
     def library = new LibraryConfiguration(
         "plx3", 
