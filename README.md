@@ -1,6 +1,6 @@
 # PLX - Ready Jenkins Pipelines
 
-The main objective of PLX is to provide an uncomplicated way to package and deliver micro-services without sacrificing quality.
+The main objective of PLX is to provide an uncomplicated way to package and delivery micro-services without sacrificing quality.
 
 1. [How it works](#how-it-works)
     - [Git repository setup](#git-repository-setup)
@@ -53,12 +53,12 @@ It is based on archetypes that PLX automatically configures CI / CD pipelines.
 * PHP
     - API Rest.
     - Service (Consumer/Producer).
-    - Schedulable worker.
+    - Schedule worker.
     - Library.
 * NodeJs
     - API Rest.
     - Service (Consumer/Producer).
-    - Schedulable worker.
+    - Schedule worker.
     - Library.
 * React
     - Static WEB (frontend web).
@@ -78,6 +78,7 @@ You can create and register your own archetypes.
 
 ## How to install
 
+### Install by "console script"
 Copy, paste and run the follow code on Jenkins > Manager > Script Console.
 
 ```groovy 
@@ -88,33 +89,52 @@ import org.jenkinsci.plugins.workflow.libs.GlobalLibraries
 import org.jenkinsci.plugins.workflow.libs.LibraryConfiguration
 import org.jenkinsci.plugins.workflow.libs.SCMSourceRetriever
 
-if (! Jenkins.instance.getDescriptor(GlobalLibraries).getLibraries().findAll{ it.getName() == "plx3" }) {
+if (! Jenkins.instance.getDescriptor(GlobalLibraries).getLibraries().findAll{ it.getName() == "plx" }) {
     def libraries = Jenkins.instance.getDescriptor(GlobalLibraries).getLibraries()
     def scm = new GitSCMSource("git@github.com:marcosborges/plx.git")
     scm.traits = [new BranchDiscoveryTrait()]
-    def library = new LibraryConfiguration(
-        "plx3", 
-        new SCMSourceRetriever(scm)
-   	)
-  	library.defaultVersion = "master"
+    def library = new LibraryConfiguration("plx", new SCMSourceRetriever(scm))    
+    library.defaultVersion = "master"
     library.implicit = true
     library.allowVersionOverride = true
-    library.includeInChangesets = true
+    library.includeInChangesets = false
     libraries << library
     def gSettings = Jenkins.instance.getExtensionList(GlobalLibraries.class)[0]
     gSettings.libraries = libraries
     gSettings.save()
-    println 'Global Shared Libraries Configured'
+    // TODO - CREATE SETUP JOB
+    println 'PLX Global Shared Libraries configured succefully'
 }
 ```
+---
+
+### Install by "pipeline job"
+
+1. Create one Pipeline Job called "install";
+2. Copy, paste and run the follow code on script editor";
+3. Save end run the "install" job;
+
+```groovy
+@Grab('plus.plx:0.0.1.RELEASE')
+import plus.plx.Install
+new Install().start() 
+```
+
+---
+
+
+# How to configure
+
+## Run setup Pipeline Job
+
+
 
 
 ---
 
-[Install](##Install)
+## fsdfdsfsdfsdfsdfs
 
-
-
+---
 
 ## Model
 ```groovy
