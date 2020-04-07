@@ -76,6 +76,38 @@ You can create and register your own archetypes.
     
 ---
 
+## How to install
+
+Copy, paste and run the follow code on Jenkins > Manager > Script Console.
+
+```groovy 
+import jenkins.model.Jenkins
+import jenkins.plugins.git.GitSCMSource
+import jenkins.plugins.git.traits.BranchDiscoveryTrait
+import org.jenkinsci.plugins.workflow.libs.GlobalLibraries
+import org.jenkinsci.plugins.workflow.libs.LibraryConfiguration
+import org.jenkinsci.plugins.workflow.libs.SCMSourceRetriever
+
+if (! Jenkins.instance.getDescriptor(GlobalLibraries).getLibraries().findAll{ it.getName() == "plx3" }) {
+  	def libraries = Jenkins.instance.getDescriptor(GlobalLibraries).getLibraries()
+  	def scm = new GitSCMSource("git@github.com:marcosborges/plx.git")
+    scm.traits = [new BranchDiscoveryTrait()]
+    def library = new LibraryConfiguration(
+        "plx3", 
+        new SCMSourceRetriever(scm)
+   	)
+  	library.defaultVersion = "master"
+    library.implicit = true
+    library.allowVersionOverride = true
+    library.includeInChangesets = true
+    libraries << library
+    def gSettings = Jenkins.instance.getExtensionList(GlobalLibraries.class)[0]
+    gSettings.libraries = libraries
+    gSettings.save()
+    println 'Global Shared Libraries Configured'
+}
+```
+
 
 ---
 
