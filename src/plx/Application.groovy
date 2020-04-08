@@ -9,6 +9,7 @@ import plx.base.IController
 class Application implements IApplication{
 
     IController controller
+    String packageName
     String controllerName
     String action
     Map config
@@ -24,7 +25,7 @@ class Application implements IApplication{
     void run() {
         Plx.exec.println("Application.run()")
         verifyRequirements()
-        controller = new GroovyClassLoader().loadClass(controllerName as String,true,false).getDeclaredConstructor().newInstance() as IController
+        controller = new GroovyClassLoader().loadClass("${packageName}.${controllerName}" as String,true,false).getDeclaredConstructor().newInstance() as IController
         controller?.init()
         controller?.beforeAction()
         controller?."${action}"(args)
