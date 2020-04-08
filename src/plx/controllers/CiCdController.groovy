@@ -1,20 +1,17 @@
 package plx.controllers
 
 import plx.Plx
+import plx.base.IController
 
-class CiCdController {
+class CiCdController implements IController  {
 
     def technology
-
     def destinationClass
 
     void start() {
 
         Plx.exec.node () {
             Plx.exec.println("CiCd.start()")
-
-            loadConfigures()
-            loadCredentials()
 
             Plx.exec.stage ('downloading') {
                 Plx.exec.println("downloading")
@@ -54,5 +51,23 @@ class CiCdController {
         }
     }
 
+    @Override
+    void init() {
 
+    }
+
+    @Override
+    void beforeAction() {
+
+    }
+
+    @Override
+    void afterAction() {
+
+    }
+
+    @Override
+    void end() {
+
+    }
 }
