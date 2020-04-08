@@ -107,28 +107,27 @@ if (! Jenkins.instance.getDescriptor(GlobalLibraries).getLibraries().findAll{ it
 }
 ```
 ---
-
+<!--
 ### Install by "pipeline job"
 
 1. Create one Pipeline Job called "install";
 2. Copy, paste and run the follow code on script editor";
-3. Save end run the "install" job;
-
 ```groovy
-@Grab('plus.plx:0.0.1.RELEASE')
+@GrabResolver(name='plx', root='https://maven.pkg.github.com/marcosborges/')
+@Grab('com.marcosborges.plx:0.0.1')
 import plus.plx.Install
 new Install().start() 
 ```
-
+3. Save end run the "install" job;
 ---
+-->
+
+
 
 
 # How to configure
 
 ## Run setup Pipeline Job
-
-
-
 
 ---
 

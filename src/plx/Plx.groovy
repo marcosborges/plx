@@ -6,7 +6,9 @@ import plx.base.Logger
 
 import plx.utils.IHttpClient
 
-
+/**
+ * @author Marcos Borges
+ */
 class Plx implements Serializable{
 
     static Application app
