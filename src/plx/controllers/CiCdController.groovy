@@ -8,7 +8,7 @@ class CiCdController implements IController  {
     def technology
     def destinationClass
 
-    void start() {
+    void start(Map args) {
 
         Plx.exec.node () {
             Plx.exec.println("CiCd.start()")
