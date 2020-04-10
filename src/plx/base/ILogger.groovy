@@ -2,6 +2,6 @@ package plx.base
 
 import org.slf4j.ILoggerFactory
 
-interface ILogger extends ILoggerFactory{
+interface ILogger extends ILoggerFactory, Serializable{
 
 }

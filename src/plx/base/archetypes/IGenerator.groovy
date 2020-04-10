@@ -1,4 +1,4 @@
-package plx.base
+package plx.base.archetypes
 
 interface IGenerator extends Serializable {
 

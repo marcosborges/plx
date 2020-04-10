@@ -1,6 +1,6 @@
 package plx.repositories.git
 
-interface IGitGroup extends IGit {
+interface IGitGroup extends IGitApi {
 
     IGitGroupObject create(IGitGroupObject group)
     IGitGroupObject update(IGitGroupObject group)

@@ -2,7 +2,7 @@ import org.jenkinsci.plugins.workflow.cps.CpsScript
 import plx.base.Logger
 
 import com.homeaway.devtools.jenkins.testing.JenkinsPipelineSpecification
-import plx.base.Executor
+
 import spock.lang.*
 class PipelineUtilsSpec extends Specification {
 

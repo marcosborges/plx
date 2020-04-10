@@ -2,7 +2,7 @@ package plx.repositories.git
 
 import plx.utils.IHttpClient
 
-interface IGit extends Serializable{
+interface IGitApi extends Serializable{
 
     IHttpClient http = null
     String host = null

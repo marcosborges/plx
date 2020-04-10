@@ -1,20 +1,39 @@
 package plx.controllers
 
 import plx.Plx
+import plx.base.IGit
+import plx.base.archetypes.IArchetype
 import plx.base.IController
+import plx.base.environments.IEnvironments
 
 class CiCdController implements IController  {
 
-    def technology
-    def destinationClass
+    String name
+    String namespace
+    IArchetype archetype
+    IGit git
+    IEnvironments environment
+
+    @Override
+    void init() { }
 
     void start(Map args) {
+        Plx.exec.println(args)
+        /*
+        name = args.name
+        namespace = args.namespace
+        archetype = args.archetype as IArchetype
+        git = args.git as IGit
+        environment = args.environments as IEnvironments
+        */
 
         Plx.exec.node () {
+
             Plx.exec.println("CiCd.start()")
 
             Plx.exec.stage ('downloading') {
                 Plx.exec.println("downloading")
+
             }
 
             Plx.exec.stage ('restoring') {
@@ -52,22 +71,11 @@ class CiCdController implements IController  {
     }
 
     @Override
-    void init() {
-
-    }
+    void beforeAction() { }
 
     @Override
-    void beforeAction() {
-
-    }
+    void afterAction() { }
 
     @Override
-    void afterAction() {
-
-    }
-
-    @Override
-    void end() {
-
-    }
+    void end() { }
 }

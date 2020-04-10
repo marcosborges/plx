@@ -1,8 +1,7 @@
 package plx.repositories.executors
 
-import com.cloudbees.groovy.cps.NonCPS
+
 import org.jenkinsci.plugins.workflow.cps.CpsScript
-import plx.base.IExecutor
 
 class Jenkins implements IExecutor {
 

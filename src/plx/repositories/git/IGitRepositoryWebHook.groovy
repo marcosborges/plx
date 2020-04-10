@@ -1,6 +1,6 @@
 package plx.repositories.git
 
-interface IGitRepositoryWebHook extends IGit {
+interface IGitRepositoryWebHook extends IGitApi {
 
     IGitRepositoryObject repository = null
     IGitRepositoryWebHookObject create(IGitRepositoryWebHookObject webHook)

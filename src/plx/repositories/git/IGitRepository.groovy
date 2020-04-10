@@ -1,6 +1,6 @@
 package plx.repositories.git
 
-interface IGitRepository extends IGit {
+interface IGitRepository extends IGitApi {
 
     IGitGroupObject group = null
     IGitRepositoryObject create(IGitRepositoryObject repository)

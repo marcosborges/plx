@@ -1,6 +1,6 @@
 package plx.base
 
-trait Logger implements ILogger, Serializable {
+trait Logger implements ILogger {
 
     void info (message) {
         _log('info', message)

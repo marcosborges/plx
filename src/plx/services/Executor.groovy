@@ -1,6 +1,5 @@
 package plx.services
 
-import plx.base.IExecutor
 
 class Executor implements IExecutor {
 

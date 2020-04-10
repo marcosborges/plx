@@ -1,8 +1,7 @@
 package plx.repositories.git.gitlab
 
-import plx.repositories.git.IGit
+
 import plx.repositories.git.IGitRepository
-import plx.repositories.git.IGitRepositoryBranch
 import plx.repositories.git.IGitRepositoryObject
 
 class GitlabRepository implements IGitRepository {

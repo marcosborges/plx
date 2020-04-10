@@ -1,6 +1,6 @@
 package plx.repositories.git
 
-interface IGitRepositoryBranch extends IGit {
+interface IGitRepositoryBranch extends IGitApi {
 
     IGitRepositoryObject repository = null
     IGitRepositoryBranchObject create(IGitRepositoryBranchObject branch)
