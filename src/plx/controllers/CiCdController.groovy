@@ -2,9 +2,9 @@ package plx.controllers
 
 import plx.Plx
 import plx.base.IGit
-import plx.base.archetypes.IArchetype
 import plx.base.IController
 import plx.base.environments.IEnvironments
+import plx.base.archetypes.IArchetype
 
 class CiCdController implements IController  {
 
@@ -18,54 +18,96 @@ class CiCdController implements IController  {
     void init() { }
 
     void start(Map args) {
-        Plx.exec.println(args)
-        /*
+
         name = args.name
+
         namespace = args.namespace
-        archetype = args.archetype as IArchetype
+
+        archetype = [
+            name : args.archetype.name,
+            type : args.archetype.type,
+            language : new GroovyClassLoader()
+                .loadClass("${args.archetype.language.class}",true,false)
+                .getDeclaredConstructor()
+                .newInstance(container : args.archetype.language.container),
+            configures : new GroovyClassLoader()
+                .loadClass("${args.archetype.configures.class}",true,false)
+                .getDeclaredConstructor()
+                .newInstance(files : args.archetype.configures.files),
+        ] as IArchetype
+
         git = args.git as IGit
-        environment = args.environments as IEnvironments
-        */
+
+        environment = [
+            name : args.environment.name,
+            destination : new GroovyClassLoader()
+                .loadClass("${args.environment.destination.class}",true,false)
+                .getDeclaredConstructor()
+                .newInstance(
+                    options : args.archetype.destination.options
+                )
+        ] as IEnvironments
 
         Plx.exec.node () {
 
-            Plx.exec.println("CiCd.start()")
-
             Plx.exec.stage ('downloading') {
-                Plx.exec.println("downloading")
-
+                Plx.exec.git(git)
             }
 
             Plx.exec.stage ('restoring') {
-                Plx.exec.println("restore")
+                archetype.language.restore()
             }
 
             Plx.exec.stage ('testing') {
-                Plx.exec.println("test")
+                archetype.language.unitTest()
             }
 
             Plx.exec.stage ('reviewing') {
-                Plx.exec.println("review")
+                Plx.exec.wfs.withCredentials([
+                    Plx.exec.wfs.string(credentialsId: 'PLX_SONAR_ENABLED', variable: "PLX_SONAR_ENABLED"),
+                    Plx.exec.wfs.string(credentialsId: 'PLX_SONAR_API_HOST', variable: "PLX_SONAR_API_HOST"),
+                    Plx.exec.wfs.string(credentialsId: 'PLX_SONAR_API_KEY', variable: "PLX_SONAR_API_KEY"),
+                    Plx.exec.wfs.string(credentialsId: 'PLX_SONAR_WEBHOOK_KEY', variable: "PLX_SONAR_WEBHOOK_KEY")
+                ]) {
+                    archetype.language.review()
+                }
             }
 
             Plx.exec.stage ('building') {
-                Plx.exec.println("build")
+                archetype.language.build()
             }
 
             Plx.exec.stage ('registering') {
-                Plx.exec.println("registering")
+                Plx.exec.wfs.withCredentials([
+                    Plx.exec.wfs.string(credentialsId: "PLX_NEXUS_ENABLED", variable: "PLX_NEXUS_ENABLED"),
+                    Plx.exec.wfs.string(credentialsId: "PLX_NEXUS_API_HOST", variable: "PLX_NEXUS_API_HOST"),
+                    Plx.exec.wfs.string(credentialsId: "PLX_NEXUS_API_KEY", variable: "PLX_NEXUS_API_KEY"),
+                    Plx.exec.wfs.string(credentialsId: "PLX_NEXUS_COMPONENT_REGISTRY_${environment.name.toUpperCase()}", variable: "PLX_NEXUS_COMPONENT_REGISTRY"),
+
+                    Plx.exec.wfs.string(credentialsId: "PLX_DOCKER_REGISTRY_HOST", variable: "PLX_NEXUS_DOCKER_HOST"),
+                    Plx.exec.wfs.string(credentialsId: "PLX_DOCKER_REGISTRY_KEY", variable: "PLX_NEXUS_DOCKER_KEY"),
+                    Plx.exec.wfs.string(credentialsId: "PLX_DOCKER_REGISTRY_NAME_${environment.name.toUpperCase()}", variable: "PLX_NEXUS_DOCKER_REGISTRY"),
+
+
+
+
+                ]) {
+                    archetype.language.registry()
+                }
+            }
+
+            Plx.exec.stage ('configuring') {
+                archetype.configures.verify()
             }
 
             Plx.exec.stage ('publishing') {
-                Plx.exec.println("publish")
+
+                environment.destination.publish()
+
             }
 
             Plx.exec.stage ('validating') {
-                Plx.exec.println("validating")
-            }
-
-            Plx.exec.stage ('finishing') {
-                Plx.exec.println("validating")
+                environment.destination.validate()
             }
         }
     }
